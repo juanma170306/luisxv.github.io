@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luis XV - Diseño de Muebles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Negro dominante */
+            color: #FFFFFF; /* Texto blanco por defecto */
+        }
+
+        .hero-bg {
+            background-image: url('https://placehold.co/1920x1080/1a1a1a/4a4a4a?text=Ambiente+Elegante+Luis+XV');
+            /* Imagen de fondo para la sección hero. Reemplazar con una imagen real. */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem; /* 40px */
+            font-weight: 700;
+            margin-bottom: 1.5rem; /* 24px */
+            color: #7B1E28; /* Vino tinto profundo para títulos principales en fondos oscuros */
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem; /* 18px */
+            color: #E0E0E0; /* Un gris claro para subtítulos */
+            margin-bottom: 3rem; /* 48px */
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem; /* 12px 24px */
+            border-radius: 0.375rem; /* 6px */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-wine-primary { /* Botón principal color vino */
+            background-color: #7B1E28; 
+            color: #FFFFFF; 
+        }
+        .btn-wine-primary:hover {
+            background-color: #5c161e; /* Vino tinto más oscuro */
+        }
+
+        .btn-outline-wine { /* Botón con borde color vino */
+            border: 2px solid #7B1E28;
+            color: #7B1E28;
+        }
+        .btn-outline-wine:hover {
+            background-color: #7B1E28;
+            color: #FFFFFF;
+        }
+        
+        /* Estilo anterior .btn-gold y .btn-outline-gold eliminados o reemplazados por los de vino */
+
+        nav a {
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #7B1E28; /* Vino tinto al pasar el mouse sobre enlaces de navegación */
+        }
+        
+        .fixed-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente para la barra de navegación */
+            backdrop-filter: blur(10px); /* Efecto de desenfoque para el fondo de la barra */
+            transition: background-color 0.3s ease, top 0.3s ease; /* Transición suave para el fondo y la posición */
+        }
+        
+        .card {
+            background-color: #111111; /* Un gris oscuro para las tarjetas, ligeramente más claro que el fondo */
+            border: 1px solid #222222; /* Borde sutil para las tarjetas */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+            box-shadow: 0 10px 20px rgba(123, 30, 40, 0.15); /* Sombra vino sutil al pasar el mouse */
+        }
+
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #7B1E28; /* Botón de scroll al inicio color vino */
+            color: #FFFFFF; /* Icono blanco */
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none; 
+            z-index: 1000;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #scrollTopBtn:hover {
+            background-color: #5c161e; /* Vino más oscuro al pasar el mouse */
+        }
+
+        #whatsappBtn {
+            position: fixed;
+            bottom: 80px; 
+            right: 20px;
+            background-color: #25D366; /* Color oficial de WhatsApp */
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        #whatsappBtn:hover {
+            transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+        }
+
+        .bg-off-white {
+            background-color: #F8F9FA; /* Un blanco hueso sutil para secciones claras */
+            color: #333333; /* Texto oscuro para contraste en fondos claros */
+        }
+        .bg-off-white .section-title {
+            color: #7B1E28; /* Títulos vino en secciones claras */
+        }
+         .bg-off-white .section-subtitle {
+            color: #555555; 
+        }
+        .bg-off-white .card {
+            background-color: #FFFFFF; /* Tarjetas blancas en secciones claras */
+            border: 1px solid #DDDDDD;
+        }
+        .bg-off-white .card:hover {
+             box-shadow: 0 10px 20px rgba(123, 30, 40, 0.1); /* Sombra vino sutil */
+        }
+        .bg-off-white .text-gray-600 { /* Ajuste para el texto de testimonios */
+            color: #4A5568; /* Un gris más oscuro para mejor lectura */
+        }
+        .bg-off-white .font-semibold {
+             color: #7B1E28; /* Nombres de testimonios en vino */
+        }
+
+        /* Estilos para flechas de testimonios */
+        .testimonial-carousel-container {
+            position: relative;
+        }
+        .testimonial-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+        .testimonial-arrow:hover {
+            background-color: #7B1E28; /* Color vino al pasar el mouse */
+        }
+        .testimonial-arrow-left {
+            left: -20px; /* Ajustar posición según sea necesario */
+        }
+        .testimonial-arrow-right {
+            right: -20px; /* Ajustar posición según sea necesario */
+        }
+        /* Ocultar flechas en móviles si no hay carrusel JS o si el diseño no lo permite bien */
+        @media (max-width: 768px) {
+            .testimonial-arrow {
+                display: none; 
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="navbar" class="fixed-nav p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#inicio" class="text-3xl font-bold" style="color: #7B1E28;">Luis XV</a> <nav class="hidden md:flex space-x-6 items-center">
+                <a href="#inicio" class="hover:text-luisxv-wine">Inicio</a>
+                <a href="#acerca" class="hover:text-luisxv-wine">Acerca de</a>
+                <a href="#servicios" class="hover:text-luisxv-wine">Servicios</a>
+                <a href="#proyectos" class="hover:text-luisxv-wine">Proyectos</a>
+                <a href="#valores" class="hover:text-luisxv-wine">Valores</a>
+                <a href="#testimonios" class="hover:text-luisxv-wine">Testimonios</a>
+                <a href="#blog" class="hover:text-luisxv-wine">Blog</a>
+                <a href="#contacto" class="btn btn-outline-wine text-sm">Contacto</a> </nav>
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-95 p-5"> <a href="#inicio" class="block py-2 text-center hover:text-luisxv-wine">Inicio</a>
+            <a href="#acerca" class="block py-2 text-center hover:text-luisxv-wine">Acerca de</a>
+            <a href="#servicios" class="block py-2 text-center hover:text-luisxv-wine">Servicios</a>
+            <a href="#proyectos" class="block py-2 text-center hover:text-luisxv-wine">Proyectos</a>
+            <a href="#valores" class="block py-2 text-center hover:text-luisxv-wine">Valores</a>
+            <a href="#testimonios" class="block py-2 text-center hover:text-luisxv-wine">Testimonios</a>
+            <a href="#blog" class="block py-2 text-center hover:text-luisxv-wine">Blog</a>
+            <a href="#contacto" class="block py-2 mt-2 text-center btn btn-wine-primary w-full">Contacto</a> </div>
+    </header>
+
+    <section id="inicio" class="h-screen flex items-center justify-center text-center hero-bg relative">
+        <div class="absolute inset-0 bg-black opacity-60"></div> <div class="relative z-10 p-6" data-aos="fade-up">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4" style="color: #FFFFFF;">
+                Diseño que <span style="color: #7B1E28;">trasciende</span> el tiempo. </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-200">
+                Luis XV, donde la elegancia y la funcionalidad se encuentran.
+            </p>
+            <div>
+                <a href="#proyectos" class="btn btn-wine-primary mr-2 mb-2 md:mb-0">Ver Colecciones</a> <a href="#contacto" class="btn btn-outline-wine">Contáctanos</a> </div>
+        </div>
+    </section>
+
+    <section id="acerca" class="py-20 bg-off-white scroll-mt-16 md:scroll-mt-20"> <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title" data-aos="fade-up">Acerca de Nosotros</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Fundada en 2018, Luis XV se inspira en la rica herencia del diseño clásico, fusionándola con una visión audaz y futurista.
+            </p>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2" data-aos="fade-right" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/7B1E28/FFFFFF?text=Colección+Emblemática" alt="[Imagen de Colección Representativa de Luis XV]" class="rounded-lg shadow-xl mx-auto">
+                </div>
+                <div class="md:w-1/2 text-left" data-aos="fade-left" data-aos-delay="300">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #7B1E28;">Nuestra Filosofía</h3>
+                    <p class="mb-4 text-gray-700">
+                        En Luis XV, creemos que el mobiliario es más que simple funcionalidad; es una expresión de identidad, un catalizador de ambientes y una fuente de inspiración diaria. Nos dedicamos a diseñar muebles que no solo se adaptan a los espacios, sino que los transforman, contando historias de elegancia atemporal y confort moderno.
+                    </p>
+                    <p class="text-gray-700">
+                        Cada pieza es concebida con una meticulosa atención al detalle, combinando la artesanía tradicional con técnicas innovadoras y materiales de la más alta calidad. Buscamos un equilibrio perfecto entre la estética sofisticada y la practicidad para la vida contemporánea.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-20 bg-black scroll-mt-16 md:scroll-mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title" data-aos="fade-up">Nuestros Servicios</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Soluciones integrales para materializar su visión del espacio perfecto.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-8 text-center rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-drafting-compass text-5xl mb-6" style="color: #7B1E28;"></i> <h3 class="text-2xl font-semibold mb-3" style="color: #FFFFFF;">Diseño Personalizado</h3>
+                    <p class="text-gray-400">Creamos piezas únicas desde cero, adaptadas a cada espacio y cliente, reflejando su estilo y necesidades.</p>
+                </div>
+                <div class="card p-8 text-center rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-couch text-5xl mb-6" style="color: #7B1E28;"></i> <h3 class="text-2xl font-semibold mb-3" style="color: #FFFFFF;">Fabricación Funcional</h3>
+                    <p class="text-gray-400">Muebles pensados para la vida real: versátiles, duraderos y con un estilo que perdura.</p>
+                </div>
+                <div class="card p-8 text-center rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-lightbulb text-5xl mb-6" style="color: #7B1E28;"></i> <h3 class="text-2xl font-semibold mb-3" style="color: #FFFFFF;">Diseño de Tendencias</h3>
+                    <p class="text-gray-400">Colecciones que anticipan lo que viene en el mundo del interiorismo, siempre a la vanguardia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proyectos" class="py-20 scroll-mt-16 md:scroll-mt-20" style="background-color: #0A0A0A;"> 
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title" data-aos="fade-up">Nuestros Proyectos</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Donde la visión se encuentra con la maestría artesanal.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card rounded-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/333333/FFFFFF" alt="[Imagen de Colección Áurea]" class="w-full h-64 object-cover"> <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #FFFFFF;">Colección Áurea</h3> <p class="text-gray-400 text-sm">Muebles de lujo con acentos sofisticados y líneas elegantes que definen la opulencia moderna.</p>
+                    </div>
+                </div>
+                <div class="card rounded-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://placehold.co/600x400/4a4a4a/FFFFFF" alt="[Imagen de Línea Modular Essenza]" class="w-full h-64 object-cover"> <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #FFFFFF;">Línea Modular Essenza</h3>
+                        <p class="text-gray-400 text-sm">Soluciones versátiles y adaptables para hogares contemporáneos que buscan funcionalidad con estilo.</p>
+                    </div>
+                </div>
+                <div class="card rounded-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://placehold.co/600x400/1c1c1c/FFFFFF" alt="[Imagen de Classic Reimagined]" class="w-full h-64 object-cover"> <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #FFFFFF;">Classic Reimagined</h3>
+                        <p class="text-gray-400 text-sm">El encanto del pasado reinterpretado en clave minimalista, fusionando tradición y vanguardia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="valores" class="py-20 bg-black scroll-mt-16 md:scroll-mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title" data-aos="fade-up">Valores & Capacidades</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Los pilares que definen nuestra excelencia y compromiso.
+            </p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6 flex items-center space-x-4 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-gem text-3xl w-12 h-12 flex items-center justify-center rounded-full" style="color: #FFFFFF; background-color: #7B1E28;"></i>
+                    <div><h3 class="text-lg font-semibold text-left" style="color: #FFFFFF;">Diseño Exclusivo</h3></div>
+                </div>
+                <div class="card p-6 flex items-center space-x-4 rounded-lg" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fas fa-medal text-3xl w-12 h-12 flex items-center justify-center rounded-full" style="color: #FFFFFF; background-color: #7B1E28;"></i>
+                    <div><h3 class="text-lg font-semibold text-left" style="color: #FFFFFF;">Calidad Artesanal</h3></div>
+                </div>
+                <div class="card p-6 flex items-center space-x-4 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-handshake text-3xl w-12 h-12 flex items-center justify-center rounded-full" style="color: #FFFFFF; background-color: #7B1E28;"></i>
+                    <div><h3 class="text-lg font-semibold text-left" style="color: #FFFFFF;">Atención Personalizada</h3></div>
+                </div>
+                <div class="card p-6 flex items-center space-x-4 rounded-lg" data-aos="fade-up" data-aos-delay="350">
+                    <i class="fas fa-leaf text-3xl w-12 h-12 flex items-center justify-center rounded-full" style="color: #FFFFFF; background-color: #7B1E28;"></i>
+                    <div><h3 class="text-lg font-semibold text-left" style="color: #FFFFFF;">Responsabilidad Social</h3></div>
+                </div>
+                <div class="card p-6 flex items-center space-x-4 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-sitemap text-3xl w-12 h-12 flex items-center justify-center rounded-full" style="color: #FFFFFF; background-color: #7B1E28;"></i>
+                    <div><h3 class="text-lg font-semibold text-left" style="color: #FFFFFF;">Planeación Estratégica</h3></div>
+                </div>
+                <div class="card p-6 flex items-center space-x-4 rounded-lg" data-aos="fade-up" data-aos-delay="450">
+                    <i class="fas fa-rocket text-3xl w-12 h-12 flex items-center justify-center rounded-full" style="color: #FFFFFF; background-color: #7B1E28;"></i>
+                    <div><h3 class="text-lg font-semibold text-left" style="color: #FFFFFF;">Innovación Constante</h3></div>
+                </div>
+                 <div class="card p-6 flex items-center space-x-4 rounded-lg lg:col-span-1 sm:col-span-2 lg:sm:col-span-1" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-star text-3xl w-12 h-12 flex items-center justify-center rounded-full" style="color: #FFFFFF; background-color: #7B1E28;"></i>
+                    <div><h3 class="text-lg font-semibold text-left" style="color: #FFFFFF;">Experiencia Premium</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonios" class="py-20 bg-off-white scroll-mt-16 md:scroll-mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title" data-aos="fade-up">Testimonios de Clientes</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                La satisfacción de nuestros clientes es nuestro mayor orgullo.
+            </p>
+            <div class="testimonial-carousel-container" data-aos="fade-up" data-aos-delay="200">
+                <button class="testimonial-arrow testimonial-arrow-left" aria-label="Testimonio anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="grid md:grid-cols-2 gap-8 px-8 md:px-0"> <div class="card p-8 rounded-lg"> <p class="text-gray-600 italic mb-4">"Luis XV transformó nuestro hogar. Cada mueble es una obra de arte funcional. La atención al detalle y la personalización fueron excepcionales."</p>
+                        <p class="font-semibold">- Familia Pérez</p>
+                        <p class="text-sm text-gray-500">Cliente Residencial</p>
+                    </div>
+                    <div class="card p-8 rounded-lg hidden md:block"> <p class="text-gray-600 italic mb-4">"Para nuestro hotel boutique, necesitábamos piezas únicas que reflejaran lujo y confort. Luis XV superó nuestras expectativas. ¡Altamente recomendados!"</p>
+                        <p class="font-semibold">- Gerente, Hotel Sofisticado</p>
+                        <p class="text-sm text-gray-500">Cliente Corporativo</p>
+                    </div>
+                </div>
+
+                <button class="testimonial-arrow testimonial-arrow-right" aria-label="Siguiente testimonio">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="py-20 bg-black scroll-mt-16 md:scroll-mt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title" data-aos="fade-up">Blog & Tips de Diseño</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Inspiración e ideas para elevar tus espacios.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://placehold.co/600x400/2c2c2c/FFFFFF" alt="[Imagen de Tip de Diseño 1]" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #FFFFFF;">Maximizando Espacios Pequeños</h3>
+                        <p class="text-gray-400 text-sm mb-3">Descubre cómo el mobiliario inteligente y el diseño estratégico pueden transformar áreas compactas.</p>
+                        <a href="#" class="text-sm font-semibold hover:underline" style="color: #7B1E28;">Leer más <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="card rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://placehold.co/600x400/2c2c2c/FFFFFF" alt="[Imagen de Tip de Diseño 2]" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #FFFFFF;">La Elegancia del Minimalismo</h3>
+                        <p class="text-gray-400 text-sm mb-3">Menos es más. Explora cómo la simplicidad puede ser la máxima sofisticación en el interiorismo.</p>
+                        <a href="#" class="text-sm font-semibold hover:underline" style="color: #7B1E28;">Leer más <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="card rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://placehold.co/600x400/2c2c2c/FFFFFF" alt="[Imagen de Tip de Diseño 3]" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2" style="color: #FFFFFF;">Tendencias 2025: Color y Textura</h3>
+                        <p class="text-gray-400 text-sm mb-3">Adelántate a lo que viene: los colores y materiales que dominarán el diseño de interiores.</p>
+                        <a href="#" class="text-sm font-semibold hover:underline" style="color: #7B1E28;">Leer más <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-20 scroll-mt-16 md:scroll-mt-20" style="background-color: #111111;">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="section-title" data-aos="fade-up">Contáctanos</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    ¿Listo para crear algo extraordinario? Hablemos.
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="md:w-1/2" data-aos="fade-right" data-aos-delay="200">
+                    <h3 class="text-2xl font-semibold mb-6" style="color: #7B1E28;">Información de Contacto</h3>
+                    <div class="space-y-4 text-gray-300">
+                        <p><i class="fas fa-envelope mr-3" style="color: #7B1E28;"></i> contacto@luisxv.com</p>
+                        <p><i class="fab fa-linkedin mr-3" style="color: #7B1E28;"></i> <a href="#" class="hover:underline">linkedin.com/company/luisxv</a></p>
+                        <p><i class="fas fa-map-marker-alt mr-3" style="color: #7B1E28;"></i> Ciudad Elegante, País Creativo (Opcional)</p>
+                    </div>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#" class="text-3xl hover:opacity-75 transition-opacity" style="color: #7B1E28;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/TUNUMERODEWHATSAPP" target="_blank" class="text-3xl hover:opacity-75 transition-opacity" style="color: #7B1E28;" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2" data-aos="fade-left" data-aos-delay="300">
+                    <h3 class="text-2xl font-semibold mb-6" style="color: #7B1E28;">Envíanos un Mensaje</h3>
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300">Nombre Completo</label>
+                            <input type="text" name="name" id="name" required class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-wine-focus focus:border-wine-focus text-white" style="--tw-ring-color: #7B1E28; --tw-border-color: #7B1E28;">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300">Correo Electrónico</label>
+                            <input type="email" name="email" id="email" required class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-wine-focus focus:border-wine-focus text-white" style="--tw-ring-color: #7B1E28; --tw-border-color: #7B1E28;">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300">Mensaje</label>
+                            <textarea id="message" name="message" rows="4" required class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-wine-focus focus:border-wine-focus text-white" style="--tw-ring-color: #7B1E28; --tw-border-color: #7B1E28;"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-wine-primary w-full">Enviar Mensaje</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center bg-black border-t border-gray-800">
+        <p class="text-gray-500">&copy; <span id="currentYear"></span> Luis XV. Todos los derechos reservados.</p>
+        <p class="text-sm text-gray-600 mt-1">Diseño que Transciende.</p>
+    </footer>
+
+    <button id="scrollTopBtn" title="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <a href="https://wa.me/TUNUMERODEWHATSAPP?text=Hola,%20estoy%20interesado%20en%20sus%20servicios%20de%20diseño%20de%20muebles." target="_blank" id="whatsappBtn" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, 
+            once: false, 
+            offset: 50, // Modificado para que la animación se active un poco antes
+        });
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const navbar = document.getElementById('navbar');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let lastScrollTop = 0;
+        const scrollThreshold = 80; // Píxeles a desplazarse antes de ocultar/mostrar la barra
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Ocultar/mostrar barra de navegación al hacer scroll
+            if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) { 
+                navbar.style.top = '-100px'; 
+            } else {
+                navbar.style.top = '0'; 
+            }
+            
+            // Cambiar fondo de la barra de navegación al hacer scroll
+            if (scrollTop > 200) { 
+                 navbar.style.backgroundColor = 'rgba(0,0,0,0.95)'; // Más opaco
+            } else {
+                 navbar.style.backgroundColor = 'rgba(0,0,0,0.8)'; // Semitransparente inicial
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+        }, false); // Añadido 'false' para el useCapture, buena práctica.
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            // Cambiar ícono de hamburguesa a X y viceversa
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+        
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                // Resetear ícono a hamburguesa
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.onscroll = function() { // Combinado con el listener de scroll de la navbar para eficiencia
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 300) {
+                scrollTopBtn.style.display = "block";
+                setTimeout(() => scrollTopBtn.style.opacity = "1", 10);
+            } else {
+                scrollTopBtn.style.opacity = "0";
+                setTimeout(() => scrollTopBtn.style.display = "none", 300); 
+            }
+            // (La lógica de la navbar ya está en el otro listener)
+        };
+
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // Para asegurar que las secciones no queden ocultas bajo la navbar fija al navegar con anclas:
+        // Se ha añadido la clase `scroll-mt-16` o `scroll-mt-20` a las secciones.
+        // Esto le dice al navegador que deje un margen superior al hacer scroll hacia el id de esa sección.
+        // `scroll-mt-16` (4rem/64px) o `scroll-mt-20` (5rem/80px) debería ser suficiente para la altura de la navbar.
+
+    </script>
+</body>
+</html>
